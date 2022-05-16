@@ -2,6 +2,7 @@
 #include "Edge.hpp"
 #include "FibHeap.hpp"
 #include "Node.hpp"
+#include "Queue.hpp"
 #include "Stack.hpp"
 class Graph {
    public:
@@ -33,35 +34,34 @@ class Graph {
 };
 
 void Graph::Dijkstra(Node* pocetak) {
-    pocetak->status = 0;
-    FibHeap* heap = new FibHeap();
-    start->status = start->key;
-    start->key = 0;
-    start->C = 'A';
-    heap->insert(start);
+    Queue<Node*> queue(size);
 
     Node* node = start->link;
     while (node != nullptr) {
         node->status = node->key;
         node->key = 2147483647;
-        heap->insert(node);
-        node = node->link;
         node->C = 'N';
+        node = node->link;
     }
-
-    while (heap->min != nullptr) {
-        node = heap->extractMin();
+    pocetak->key = 0;
+    node = pocetak;
+    node->C = 'A';
+    int val;
+    while (node != nullptr) {
         Edge* e = node->adj;
         while (e != nullptr) {
-            int val = e->weight + node->key;
+            val = e->weight + node->key;
+            if (e->dest->key > val) e->dest->key = val;
             if (e->dest->C == 'N') {
-                e->dest->key = val;
                 e->dest->C = 'A';
-                heap->insert(e->dest);
-            } else if (e->dest->C == 'A' && e->dest->key > val) {
-                heap->setKey(e->dest, val);
+                queue.enqueue(e->dest);
             }
+            e = e->link;
         }
+        if (!queue.isEmpty())
+            node = queue.dequeue();
+        else
+            node = nullptr;
     }
 }
 
