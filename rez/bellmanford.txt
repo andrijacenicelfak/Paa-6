@@ -1,56 +1,60 @@
 Graph sa : 100 cvorova
 I sa : 200 grana
-Vreme za Dijkstrin Algoritam :0ms
+Vreme za Bellman Ford Algoritam :0ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 100 cvorova
 I sa : 1000 grana
-Vreme za Dijkstrin Algoritam :0ms
+Vreme za Bellman Ford Algoritam :0ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 100 cvorova
 I sa : 10000 grana
-Vreme za Dijkstrin Algoritam :0ms
+Vreme za Bellman Ford Algoritam :1ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 1000 cvorova
 I sa : 2000 grana
-Vreme za Dijkstrin Algoritam :0ms
+Vreme za Bellman Ford Algoritam :0ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 1000 cvorova
 I sa : 10000 grana
-Vreme za Dijkstrin Algoritam :1ms
+Vreme za Bellman Ford Algoritam :0ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 1000 cvorova
 I sa : 100000 grana
-Vreme za Dijkstrin Algoritam :17ms
+Vreme za Bellman Ford Algoritam :17ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 10000 cvorova
 I sa : 20000 grana
-Vreme za Dijkstrin Algoritam :1ms
+Vreme za Bellman Ford Algoritam :1ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 10000 cvorova
 I sa : 100000 grana
-Vreme za Dijkstrin Algoritam :18ms
+Vreme za Bellman Ford Algoritam :18ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 10000 cvorova
 I sa : 1000000 grana
-Vreme za Dijkstrin Algoritam :256ms
+Vreme za Bellman Ford Algoritam :266ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 100000 cvorova
 I sa : 200000 grana
-Vreme za Dijkstrin Algoritam :0ms
+Vreme za Bellman Ford Algoritam :24ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 100000 cvorova
 I sa : 1000000 grana
-Vreme za Dijkstrin Algoritam :0ms
+Vreme za Bellman Ford Algoritam :241ms
+Ima ciklusa : Da
 -----------------------------------------
 Graph sa : 100000 cvorova
 I sa : 10000000 grana
-Vreme za Dijkstrin Algoritam :0ms
------------------------------------------
-Graph sa : 1000000 cvorova
-I sa : 2000000 grana
-Vreme za Dijkstrin Algoritam :31ms
------------------------------------------
-Graph sa : 1000000 cvorova
-I sa : 10000000 grana
-Vreme za Dijkstrin Algoritam :32ms
+Vreme za Bellman Ford Algoritam :3624ms
+Ima ciklusa : Da
 -----------------------------------------

@@ -16,6 +16,7 @@ class Graph {
     Node* insertNode(int key);
     bool insertEdges(int keySrc, int keyDest, int weight);
     bool insertEdges(Node* nodeSrc, Node* nodeDest, int weight);
+    bool insertEdge(Node* nodeSrc, Node* nodeDest, int weight);
     bool insertEdge(int keySrc, int keyDest, int weight);  //
     void deleteNodeEdges(Node* dest);
     void deleteEgdesToNode(Node* dest);  //
@@ -31,7 +32,56 @@ class Graph {
     void KruskalsMTS();
 
     void Dijkstra(Node* pocetak);
+    bool BellmanFord(Node* pocetak);
 };
+bool Graph::BellmanFord(Node* pocetak) {
+    Node* node = start;
+    while (node != NULL) {
+        node->status = node->key;
+        node->key = 2147483647;
+        node = node->link;
+    }
+    start->key = 0;
+
+    node = start;
+    while (node != NULL) {
+        Edge* edg = node->adj;
+        while (edg != NULL) {
+            if (node->key != 2147483647 &&
+                (node->key + edg->weight) < edg->dest->key) {
+                edg->dest->key = node->key + edg->weight;
+                edg->dest->parent = node;
+            }
+            edg = edg->link;
+        }
+
+        node = node->link;
+    }
+
+    node = start;
+    bool imaPetlje = false;
+    while (node != NULL && !imaPetlje) {
+        Edge* edg = node->adj;
+        while (edg != NULL) {
+            if (node->key != 2147483647 &&
+                (node->key + edg->weight) < edg->dest->key) {
+                imaPetlje = true;
+            }
+            edg = edg->link;
+        }
+
+        node = node->link;
+    }
+    /**
+    node = start;
+    while (node != NULL) {
+        cout << "Cvor : " << node->status << " || ";
+        cout << "Udaljenost od selektovanog cvora: " << node->key << endl;
+        node = node->link;
+    }
+    /**/
+    return imaPetlje;
+}
 
 void Graph::Dijkstra(Node* pocetak) {
     Queue<Node*> queue(size);
@@ -118,6 +168,14 @@ bool Graph::insertEdges(Node* nodeSrc, Node* nodeDest, int weight) {
 
     return true;
 }
+bool Graph::insertEdge(Node* nodeSrc, Node* nodeDest, int weight) {
+    if (nodeSrc == nullptr || nodeDest == nullptr) return false;
+    Edge* std = new Edge(nodeDest, nodeSrc->adj, weight);
+    std->src = nodeSrc;
+    nodeSrc->adj = std;
+    return true;
+}
+
 void Graph::deleteNodeEdges(Node* dest) {
     Node* ptr = start;
     delete[] dest->adj;

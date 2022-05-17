@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"ostream": "cpp",
+		"charconv": "cpp",
+		"xmemory": "cpp",
+		"xiosbase": "cpp"
+	}
+}

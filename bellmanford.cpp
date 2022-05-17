@@ -29,7 +29,7 @@ int main(int argc, char* argv[]) {
     stringstream ss(argv[1]);
     int N = 0;
     ss >> N;
-    int E = 10 * N;
+    int E = 100 * N;
 
     Graph* g = new Graph();
     Node** nodes = new Node*[N];
@@ -37,21 +37,27 @@ int main(int argc, char* argv[]) {
         nodes[i] = g->insertNode(i);
     }
     for (int i = 0; i < E; i++) {
-        g->insertEdge(nodes[rand() % N], nodes[rand() % N], rand() % N);
+        if (i < N - 1)
+            g->insertEdges(nodes[i], nodes[i + 1], rand() % N - (N / 16));
+        else
+            g->insertEdges(nodes[rand() % N], nodes[rand() % N],
+                           rand() % N - N / 2);
     }
     ofstream f(argv[2], ios::app);
+    bool imaCiklusa = false;
 
     auto start =
         duration_cast<milliseconds>(system_clock::now().time_since_epoch())
             .count();
-    g->Dijkstra(g->start);
+    imaCiklusa = g->BellmanFord(g->start);
     auto end =
         duration_cast<milliseconds>(system_clock::now().time_since_epoch())
             .count();
     // g->print();
     f << "Graph sa : " << N << " cvorova\n"
       << "I sa : " << E << " grana\n"
-      << "Vreme za Dijkstrin Algoritam :" << end - start << "ms\n"
+      << "Vreme za Bellman Ford Algoritam :" << end - start << "ms\n"
+      << "Ima ciklusa : " << (imaCiklusa ? ("Da") : ("Ne")) << "\n"
       << "-----------------------------------------\n";
     f.close();
     return 1;
